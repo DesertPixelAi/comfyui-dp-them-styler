@@ -1,0 +1,22 @@
+hey this comfyui node is for creating random versatile dynamic prompts, theme based. each folder in the data folder have empty text files that i need you to fill with 20 items, every line is an item, try keep it versatile and creative.
+please check first the node flow to understand how it works.
+
+the folder exemple_superheroes is just an exemple for my other comfyui node and you dont need to modify it, but you can use it as a reference, this is the base prompt, but please mine our new rules:
+photo of an epic {age_category} generic-superhero {gender}, {age} years old, looking at the camera with a bare face, in cinematic powerfull concept photo, frontal view, {hero_names} - {hero_base}, {action_pose}, {power_source}, wearing a {costume_material} {costume_design} in {color_schemes} with a {hero_logos}, {powers_visual}, {scene_setting}, {lighting_effects}, {atmosphere}, {ethnicities}, inspired by comics art and psychedelic hyper realistic digital illustration, cool and crazy and funny generic-superhero cinematic solo scene, {styles}
+
+this is an exemple for overwatch theme final promt, but please mine our new rules:
+Epic Overwatch hero, sleek futuristic armor with glowing accents, advanced technological weapons, confident heroic stance, vibrant saturated colors, intricate mechanical details, polished surfaces with metallic reflections, dynamic energy effects, clean sci-fi environment, dramatic heroic lighting, bold color palette, perfect proportions, hyper-detailed textures, stylized photorealistic rendering, Blizzard Entertainment aesthetic, optimistic superhero vibe
+negative:
+dark gritty style, medieval armor, realistic military gear, muted colors, dirty surfaces, horror elements, cartoon style, anime
+
+
+rules:
+1. the workflow takes user 1 image and the final step in the workflow is face swap that works better on photos so the base prompt have to start with “photo of” - later in the style you can add stuff as digital illustration/digital art/3d render… it can be semi realistic but the most important is that the image won't be flat 2d
+2. because of it works with face swap on user photo the base prompt have to include “bare face, looking at camera”, the outfit can't include face mask/helmet/glow eyes or any face elements
+3. the workflow will provide from another node age and gender, so don't include in any of the styles gender or age related items, all prompts have to be generic to fit any user
+4. the workflow use sdxl model, so don't include too complex items that can be hard for sdxl model, especially in the background and accessories. *holding Archery is exemple for a complex item that usually won't get good
+5. because of face swap and that it's targeted for 1 user image the scene have to be solo scene, so please include in all base prompts “solo” and don't add other subject especially not more humans
+6. theme_style & base_prompt & negative need to contain only one item that will fit all theme prompts and to capture good as possible the the style and atmosphere 
+
+
+
