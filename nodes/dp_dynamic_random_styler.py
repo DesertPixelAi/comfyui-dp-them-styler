@@ -119,6 +119,10 @@ class DP_Dynamic_Random_Styler:
                     "step": 1,
                     "display": "number"
                 }),
+                "subject": ("STRING", {
+                    "multiline": True,
+                    "default": ""
+                }),
             }
         }
 
@@ -167,7 +171,7 @@ class DP_Dynamic_Random_Styler:
         self.themes_cache[theme] = theme_data
         return theme_data
 
-    def generate(self, theme, generation_mode, gender_selection, age=25):
+    def generate(self, theme, generation_mode, gender_selection, age=25, subject=None):
         """
         Generate prompt based on selected theme and parameters
         
@@ -176,6 +180,7 @@ class DP_Dynamic_Random_Styler:
             generation_mode: "fixed" or "randomize"
             gender_selection: "male", "female", or "random"
             age: Numeric age (can be connected from DP_Gender_Age_Detector)
+            subject: Optional subject text to replace {subject} placeholder
         """
         
         # Set up randomization
@@ -238,6 +243,10 @@ class DP_Dynamic_Random_Styler:
         final_prompt = final_prompt.replace('{age}', selected_age)
         final_prompt = final_prompt.replace('{age_category}', selected_age_category)
         
+        # Replace {subject} if provided
+        if subject and subject.strip():
+            final_prompt = final_prompt.replace('{subject}', subject.strip())
+        
         # Process negative prompt template
         final_negative = ""
         if negative_template:
@@ -246,6 +255,10 @@ class DP_Dynamic_Random_Styler:
             final_negative = final_negative.replace('{gender}', selected_gender)
             final_negative = final_negative.replace('{age}', selected_age)
             final_negative = final_negative.replace('{age_category}', selected_age_category)
+            
+            # Replace {subject} if provided
+            if subject and subject.strip():
+                final_negative = final_negative.replace('{subject}', subject.strip())
         
         # Replace all other placeholders
         for file_key, file_data in theme_data.items():
